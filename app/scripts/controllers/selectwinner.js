@@ -29,8 +29,7 @@ angular.module('caHApp')
         console.log(GameService.game.badAnswers);
         $scope.playerAnswers = GameService.game.badAnswers;
       }
-		}
-	)
+		})
 
 	.controller('TVViewWinnerCtrl',
 		function ($scope, $location, GameService, $wamp, $timeout) {
@@ -40,8 +39,7 @@ angular.module('caHApp')
 			$timeout(function () {
 				$location.path('/tvleaderboard');
 			}, 8000);
-		}
-	)
+		})
 
 	.controller('PlayerViewWinnerCtrl',
   	function ($scope, $location, GameService, $wamp, $timeout, name) {
@@ -61,16 +59,14 @@ angular.module('caHApp')
   		$timeout(function () {
   			$location.path('/playerleaderboard');
   		}, 8000);
-  	}
-  )
+  	})
 
 	.controller('GameResultCtrl',
   	function ($scope, $location, GameService, $route) {
-		// TODO: show winner and leadboard
-		GameService.checkQuit('player');
+  		// TODO: show winner and leadboard
+  		GameService.checkQuit('player');
 
-		$scope.$on('GameUpdate', function() {
-			$route.reload();
-		});
-	}
-);
+  		$scope.$on('GameUpdate', function() {
+  			$route.reload();
+  		});
+  	});
