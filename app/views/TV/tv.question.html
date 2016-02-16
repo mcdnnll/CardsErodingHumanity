@@ -1,0 +1,52 @@
+<div class="container-fluid" ng-controller="TVQuestionCtrl">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+      <!-- Card before reveal-->
+      <div class="Card-q-tv" ng-hide="revealQuestion">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title-tv text-left">
+              <div>Cards<br/><span>Eroding</span><br/>Humanity<br/>
+              </div>
+            </div>
+            <div class="Card-reveal-questioner">- {{questioner}}</div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+
+      <!-- Card with question after reveal-->
+      <div class="Card-q-tv" ng-show="revealQuestion">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title-tv-answer text-left">{{question.text}}</div>
+          </div>
+          <div class="Card-reveal-answers">Select {{question.numAnswers}} {{answertext}} now.</div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <!--Show player answer list after question reveal-->
+      <div ng-show="revealQuestion">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="tvlist">
+              <div ng-repeat="player in players">
+                <div ng-show="player.name != questioner">
+                  <div class="p-list">
+                    <div class="player label label-{{player.hasAnswered}}">{{player.name}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

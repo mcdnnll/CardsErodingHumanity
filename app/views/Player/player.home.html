@@ -1,0 +1,37 @@
+<div class="container-fluid" ng-controller="HomeCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="visible-xs Card-title u-alignLeft">
+              <div class="Card-font">Cards<br/><span
+                  class="{{buttonType}}">Eroding</span><br/>Humanity<br/>
+              </div>
+            </div>
+            <div class="hidden-xs Card-title text-center">
+              <div class="Card-font">
+                Cards <span class="{{buttonType}}">Eroding </span>Humanity
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-primary-text">Game Status:</div>
+            <div class="Card-status">
+              <span class="Card-status-left"><i class="fa fa-gamepad fa-2x"></i></span>
+              <span class="Card-status-right {{buttonType}}">{{gameStatus}}</span>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-button">
+              <a class="btn btn-lg btn-{{buttonType}}" ng-href="{{page}}" ng-disabled="buttonDisable">{{buttonText}}</a>
+            </div>
+            <div class="Card-primary-text danger text-center" ng-show="buttonDisable">The current game will be finished shortly!</div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+  </div>
+</div>
+

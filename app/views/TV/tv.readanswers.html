@@ -1,0 +1,35 @@
+<div ng-controller="TVReadAnswersCtrl">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 text-center">
+      <h1>{{question}}</h1>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4 ">
+      <h1 class="success text-center">Good &nbsp&nbsp <i class="fa fa-thumbs-up"></i></h1>
+      <ul ng-repeat="goodAnswer in goodAnswers">
+        <h1>
+          <li>
+            <div ng-repeat="answer in goodAnswer.playerAnswersArray">{{answer.text}}</div>
+          </li>
+        </h1>
+      </ul>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <h1 class="danger text-center">Bad &nbsp&nbsp <i class="fa fa-thumbs-down"></i></h1>
+      <ul ng-repeat="badAnswer in badAnswers">
+        <h1>
+          <li>
+            <div ng-repeat="answer in badAnswer.playerAnswersArray">{{answer.text}}</div>
+          </li>
+        </h1>
+      </ul>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

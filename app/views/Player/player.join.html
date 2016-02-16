@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="JoinCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center">
+              <div class="Card-font">Join Game</div>
+            </div>
+            <div class="divider"></div>
+            <div ng-show="gameStatus === 'gameLoading'">
+              <div class="Card-primary-text">Your Name:</div>
+              <form name="playerName" ng-submit="submit()" class="Card-button">
+                <input type="text" class="form-control"  name="name" ng-model="name" required=""
+                 ng-pattern="[^ ].*"/>
+                <p class="alert" ng-show="playerName.name.$error.pattern">Please enter a name</p>
+                <p class="alert" ng-show="nameTakenAlert">That name is taken.</p>
+                <div class="divider"></div>
+                <input class="btn btn-lg btn-success" type="submit" ng-disabled="!playerName.$valid"
+                 value="Join">
+                </form>
+            </div>
+            <div class="Card-button" ng-show="gameStatus == 'gameNone'">
+              <div class="Card-primary-text">No game running, create a new one!</div>
+              <div class="divider"></div>
+              <a class="btn btn-lg btn-primary" ng-href="#/playeradmin">Game Setup</a>
+            </div>
+            <div class="Card-button" ng-show="gameStatus === 'gameActive'">
+              <div class="Card-primary-text">Game current running, please wait for next round!</div>
+              <div class="divider"></div>
+              <a class="btn btn-lg btn-danger" ng-href="#/">Home</a>
+            </div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+  </div>
+</div>
+

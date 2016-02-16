@@ -1,0 +1,45 @@
+<div class="container-fluid" ng-controller="PlayerLeaderboardCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+          <div class="Card-title text-center primary">
+              <div class="Card-font">Leaderboard</div>
+            </div>
+            <div class="divider"></div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>+/-</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="player in players | orderBy:'-score'">
+                    <td>{{($index + 1)}}</td>
+                    <td>{{player.name}}</td>
+                    <td>{{player.score}}</td>
+                    <td>
+                      <span ng-show="player.lastRound > 0" class="success"><i class="fa fa-caret-up"></i>&nbsp&nbsp{{player.lastRound}}</span>
+                      <span ng-show="player.lastRound == 0">-</span>
+                      <span ng-show="player.lastRound < 0" class="danger"><i class="fa fa-caret-down"></i>&nbsp&nbsp{{player.lastRound | abs}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+      <div class="col-is-1 col-sm-1 col-md-3"></div>
+    </div>
+  </div>
+</div>
+

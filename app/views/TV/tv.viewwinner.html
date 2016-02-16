@@ -1,0 +1,25 @@
+<div ng-controller="TVViewWinnerCtrl">
+  <div class="centre"></div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 text-center">
+      <h1><b>{{question}}</b></h1>
+    </div>
+    <br/><br/><br/><br/>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="text-center">
+        <div>
+          <h1><span class="success">{{winningAnswer.playerName}}</span> has won this time!</h1>
+        </div>
+        <br/><br/><br/>
+        <ul ng-repeat="answer in winningAnswer.playerAnswersArray">
+          <li><h1>{{answer.text}}</h1></li>
+        </ul>
+      </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

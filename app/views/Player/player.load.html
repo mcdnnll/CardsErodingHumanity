@@ -1,0 +1,26 @@
+<div class="container-fluid" ng-controller="LoadCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center success">
+              <div class="Card-font">Loading <i class="fa fa-smile-o"></i></div>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-primary-text text-center">Get ya game face on!</div>
+            <div class="divider"></div>
+            <div class="Card-primary-text text-center">
+              <h2><timer interval="1000" finish-callback="go('/playerleaderboard')" countdown="8">{{countdown}}</timer> </h2>
+            </div>
+
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+      <div class="col-is-1 col-sm-1 col-md-3"></div>
+    </div>
+  </div>
+</div>

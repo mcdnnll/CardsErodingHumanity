@@ -1,0 +1,16 @@
+/**
+* =========================================================
+* -- Config.scss --
+* Core/Global css variables & mixin properties
+* =========================================================
+*/
+
+// Global Colour and fonts
+$site-background-color:  #E2E2E2;
+
+
+// App-wide/shared styling
+.app-wide {
+    background: $site-background-color;
+}
+

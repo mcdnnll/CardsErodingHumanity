@@ -1,0 +1,44 @@
+<div ng-controller="TVLeaderboardCtrl">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 text-center">
+      <div class="header">
+        <h1 class="text-muted text-center">Cards Eroding Humanity</h1>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="text-center"><h1>Next player to ask a question: {{lottoPlayer}}</h1></div>
+      <div class="text-center"><h2>Leaderboard</h2></div>
+      <div class="table-responsive fa-2x">
+        <table class="table table-bordered tab-border">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Score</th>
+              <th>+/-</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="player in players | orderBy:'-score'">
+              <td>{{($index + 1)}}</td>
+              <td>{{player.name}}</td>
+              <td>{{player.score}}</td>
+              <td>
+                <span ng-show="player.lastRound > 0" class="success"><i class="fa fa-caret-up fa-2x"></i>&nbsp&nbsp{{player.lastRound}}</span>
+                <span ng-show="player.lastRound == 0">-</span>
+                <span ng-show="player.lastRound < 0" class="danger"><i class="fa fa-caret-down fa-2x"></i>&nbsp&nbsp{{player.lastRound | abs}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

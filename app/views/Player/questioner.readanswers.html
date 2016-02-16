@@ -1,0 +1,31 @@
+<div class="container-fluid" ng-controller="QuestionerReadAnswersCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center primary">
+              <div class="Card-font">Rate Answer</div>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-primary-text text-center">{{numRated+1}} of {{numPlayers-1 + isSoleLoser}}</div>
+            <div class="divider"></div>
+            <ul ng-repeat="answer in playerAnswerArray">
+              <li>{{answer.text}}</li>
+            </ul>
+            <div class="divider"></div>
+            <div class="Card-button">
+              <a class="btn btn-sm btn-success" ng-click="rate('good')">Hilarious!</a>
+              &nbsp&nbsp
+              <a class="btn btn-sm btn-danger" ng-click="rate('bad')">Terrible!</a>
+            </div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+      <div class="col-is-1 col-sm-1 col-md-3"></div>
+    </div>
+  </div>
+</div>

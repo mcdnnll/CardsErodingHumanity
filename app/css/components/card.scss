@@ -1,0 +1,170 @@
+// Colours for game state
+$gameNotRunning: #337AB7;
+$gameOpen: #5CB85C;
+$gameRunning: #D9534F;
+
+.Card {
+    border-radius: 30px;
+    background: #F6F6F6;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+    margin: 20px 0px;
+}
+
+.Card-q-tv {
+    @extend .Card;
+    margin: 50px 0;
+    height: 750px;
+    background: #000000;
+}
+
+.Card-p-tv {
+    @extend .Card;
+    margin: 50px 0;
+    height: 750px;
+    background: #ffffff;
+}
+
+.centre {
+    margin-top: 250px;
+}
+
+.Card-title {
+    margin: 20px 0px;
+}
+
+.Card-title-tv {
+    margin: 20px 0px;
+    color: white;
+    font-size: 5em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1em;
+    padding-top: 30px;
+}
+
+.Card-title-tv-answer {
+    margin: 20px 0px;
+    color: white;
+    font-size: 3.7em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1em;
+    padding-top: 30px;
+}
+
+table, th, td {
+    border: solid black 5px;
+}
+
+.tvlist {
+    margin-top: 50px;
+    padding: 1px 0px;
+}
+
+.player {
+    font-size: 3em;
+    margin: 10px 0px;
+}
+
+.p-list {
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+
+
+.Card-reveal-questioner {
+    text-align: right;
+    margin-top: 330px;
+    font-size: 2em;
+    color: white;
+}
+
+.Card-reveal-answers {
+    @extend .Card-reveal-questioner;
+    text-align: center;
+    margin-top: 650px;
+}
+
+.Card-font {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 2.5em;
+    line-height: 1.1em;
+}
+
+.Card-font-tv {
+    @extend .Card-font;
+}
+
+.Card-status {
+    margin: 10px 0px;
+}
+
+.Card-primary-text {
+    color: #777;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    line-height: 1em;
+    margin: 15px 0px;
+    text-align: center;
+}
+
+.Card-status-group {
+//    margin: 0px 20px;
+    min-height: 20px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    display: table-cell;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+
+}
+
+.Card-status-left {
+    @extend .Card-status-group;
+    width: 1%;
+    border-right: 0;
+}
+
+
+.Card-status-right {
+    @extend .Card-status-group;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.Card-button {
+    margin: 20px 0px;
+    text-align: center;
+}
+
+
+
+
+
+.Card-checkbox {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+
+
+// Inline styling based on game state
+.primary {
+    color: $gameNotRunning;
+}
+
+.success {
+    color: $gameOpen;
+}
+
+.danger {
+    color: $gameRunning;
+}

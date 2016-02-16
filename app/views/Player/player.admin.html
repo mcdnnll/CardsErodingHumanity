@@ -1,0 +1,57 @@
+<div class="container-fluid"  ng-controller="AdminCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center">
+              <div class="Card-font">Admin</div>
+            </div>
+            <div class="divider"></div>
+            <div ng-show="gameStatus === 'gameNone'">
+              <div class="Card-primary-text">Number of players:</div>
+                <form name="playerCount" ng-submit="submit()" class="Card-button">
+                  <input class="form-control"  type="number" name="numPlayers" ng-model="numPlayers" required="" min="3" max="12" pattern="\d*"/>
+                  <p class="alert" ng-show="playerCount.numPlayers.$error.min || playerCount.numPlayers.$error.max">Sorry, a game only supports 3-12 players</p>
+                  <div class="divider"></div>
+                  <div class="Card-primary-text">Extra Game Settings:</div>
+                    <div class="checkbox">
+                      <div class="Card-checkbox text-left">
+                          Badly Beaten Bonus:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="pull-right" name="bonus" ng-model="bonus"/>
+                      </div>
+                      <div class="Card-checkbox text-left">
+                          Brazen Betting:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" name="betting" ng-model="betting"/>
+                      </div>
+                      <div class="Card-checkbox text-left">
+                          Beautiful Blanks:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox"name="blanks" ng-model="blanks"/>
+                      </div>
+                    </div>
+                  <div class="divider"></div>
+                  <input class="btn btn-lg btn-success" type="submit" ng-disabled="!playerCount.$valid" value="Start Game!">
+                </form>
+            </div>
+            <div class="Card-button" ng-show="gameStatus == 'gameActive' || gameStatus == 'gameLoading' || gameStatus == 'gameReset'">
+                <div class="Card-primary-text text-center">A game is currently running!</div>
+                <div class="Card-primary-text text-center">Do you want to end it?</div>
+                <div class="divider"></div>
+                <a class="btn btn btn-primary" ng-href="#/">Not Yet</a>
+                <a class="btn btn btn-danger" ng-click="quitGame()">Now Damn it!</a>
+            </div>
+
+            <div class="Card-button" ng-show="gameStatus == 'gameActive'">
+                <div class="Card-primary-text text-center">Do you want to reset the round?</div>
+                <div class="divider"></div>
+                <a class="btn btn btn-danger" ng-click="resetRound()">Reset Round!</a>
+            </div>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+  </div>
+</div>
+
+

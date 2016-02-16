@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="QuestionerSelectWinnerCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center primary">
+              <div class="Card-font">Pick Winner</div>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-primary-text">Choose your favourite out of the following {{quality}} responses:</div>
+            <form name="selectWinner" ng-submit="chooseWinner()">
+              <div ng-repeat="answer in playerAnswers">
+                <input  type="radio" name="answers" ng-click="selectAnswer(answer)" />
+                <span ng-repeat="playerAnswer in answer.playerAnswersArray">{{playerAnswer.text}}</span>
+              </div>
+              <div class="divider"></div>
+              <div class="Card-button">
+                <input class="btn btn-lg btn-primary" type="submit" ng-disabled="!winningAnswer" value="Submit Winner">
+              </div>
+            </form>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+      <div class="col-is-1 col-sm-1 col-md-3"></div>
+    </div>
+  </div>
+</div>
+

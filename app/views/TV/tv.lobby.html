@@ -1,0 +1,33 @@
+<div ng-controller="TVLobbyCtrl">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="header">
+      <h1 class="text-muted text-center">Game Lobby</h1>
+    </div>
+    <div class="jumbotron">
+      <div ng-show="gameStatus == 'gameLoading'">
+        <div>
+          <h2>Still waiting for {{numPlayers}} players to join...</h2>
+        </div>
+        <br/>
+
+        <!--List of players that have joined the new game-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Current Players</h3>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="player in players">{{player.name}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div ng-show="gameStatus == 'gameNone'">
+        <div>
+          <h2>No game has been set up yet.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>

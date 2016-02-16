@@ -1,0 +1,38 @@
+<div class="container-fluid" ng-controller="PlayerSubmitAnswersCtrl">
+  <div class="row">
+    <div class="col-is-1 col-sm-1 col-md-3"></div>
+    <div class="col-xs-12 col-is-10 col-sm-10 col-md-6">
+      <div class="Card">
+        <div class="row">
+          <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+            <div class="Card-title text-center primary">
+              <div class="Card-font">Select Answer</div>
+            </div>
+            <div class="divider"></div>
+            <div class="Card-primary-text danger" ng-bind="message"></div>
+            <form name="submitAnswer" ng-submit="pushToAnswers()">
+              <div ng-repeat="answer in answerPool">
+                <input type="radio" name="answers" id="answers{{$index}}" ng-click="selectAnswer(answer)" />
+                <label for="answers{{$index}}">{{answer.text}}</label>
+              </div>
+              <input type="text" ng-show="selectedAnswer.text === 'BLANK'" ng-model="inputAnswer">
+              <br/>
+              <div ng-show="confidenceOption && lastAnswer && selectedAnswer && (selectedAnswer.text !== 'BLANK' || inputAnswer !== '')">
+                <div class="divider"></div>
+                <div class="Card-primary-text text-center">Feeling confident?? <input type="checkbox" name="confident" ng-model="isConfident"/></div>
+              </div>
+              <div class="divider"></div>
+              <div class="Card-button">
+                <input class="btn btn-sm btn-{{buttonStyle}}" type="submit" ng-disabled="!selectedAnswer || (selectedAnswer.text === 'BLANK' && inputAnswer === '')" value="{{buttonName}}">
+              </div>
+            </form>
+          </div>
+          <div class="col-xs-1"></div>
+        </div>
+      </div>
+      <div class="col-is-1 col-sm-1 col-md-3"></div>
+    </div>
+  </div>
+</div>
+
