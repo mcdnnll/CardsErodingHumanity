@@ -9,7 +9,7 @@ angular.module('caHApp')
         $scope.winningAnswer = answer;
       };
 
-      $scope.chooseWinner = function()){
+      $scope.chooseWinner = function() {
         $wamp.call('chooseWinner',[$scope.winningAnswer])
           .then(function() {
             $location.path('/playerleaderboard');

@@ -30,7 +30,6 @@ angular.module('caHApp')
 			} else {
 				$scope.lottoPlayer = newQuestioner;
 				$timeout(function () {
-          // Select
 					$wamp.call('questionerChosen', [])
             .then(function() {
 							$location.path('/tvquestion');
@@ -49,11 +48,13 @@ angular.module('caHApp')
   		GameService.checkQuit('player');
 
       // Redirect view based on whether player is a questioner or regular player
-  		if (GameService.game.isNewQuestion && name.name === GameService.game.questioner) {
-				$location.path('/questionerquestion');
-  		} else {
-        $location.path('/playerquestion');
-      }
+  		if (GameService.game.isNewQuestion) {
+        if (name.name === GameService.game.questioner) {
+				  $location.path('/questionerquestion');
+        } else {
+          $location.path('/playerquestion');
+        }
+  		}
 
       $scope.$on('GameUpdate', function() {
         $route.reload();

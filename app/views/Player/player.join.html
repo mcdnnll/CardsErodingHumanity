@@ -14,7 +14,7 @@
               <div class="Card-primary-text">Your Name:</div>
               <form name="playerName" ng-submit="submit()" class="Card-button">
                 <input type="text" class="form-control"  name="name" ng-model="name" required=""
-                 ng-pattern="[^ ].*"/>
+                 ng-pattern="/[^ ].*/"/>
                 <p class="alert" ng-show="playerName.name.$error.pattern">Please enter a name</p>
                 <p class="alert" ng-show="nameTakenAlert">That name is taken.</p>
                 <div class="divider"></div>
