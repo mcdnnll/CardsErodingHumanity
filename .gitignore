@@ -5,6 +5,7 @@ dist
 .idea
 bower_components
 .editorconfig
-ac/
-
+ac
 .crossbar/node.key
+.crossbar/node.pid
+screens
