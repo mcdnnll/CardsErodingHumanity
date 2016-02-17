@@ -2,7 +2,10 @@
 
 var autobahn = require('autobahn');
 var log4js = require('log4js');
-var config = require('config');
+
+// Update host and port where necessary
+var host = "192.168.1.103";
+var port = "9001";
 
 // Read CaH data into memory on startup
 try {
@@ -246,7 +249,7 @@ var connection = new autobahn.Connection({
     /**
      * Update IP to reflect machine's network ip address.
      */
-    url: 'ws://' + config.host +':' + config.ports.wsserver + '/ws',
+    url: 'ws://' + host +':' + port + '/ws',
     realm: 'realm1'}
 );
 
@@ -384,15 +387,6 @@ connection.onopen = function (session){
 	function registerPlayer(args, kwargs, details){
 		var name = args[0];
 		var newPlayer = new Player(name);
-		//
-		//if (name === 'A'){
-		//	newPlayer.score = 10;
-		//}
-		//if (name === 'B'){
-		//	newPlayer.score = 5;
-		//}
-
-		//newPlayer.score = 3;
 
 		Game.players.push(newPlayer);
 
@@ -407,7 +401,6 @@ connection.onopen = function (session){
 				Game.players[player].answers = Game.players[player].answers.concat(allotedAnswers);
 			}
 		}
-
 		session.publish('WAMPGameUpdate', [Game]);
 	}
 
@@ -428,19 +421,19 @@ connection.onopen = function (session){
 	// Notification that tv has finished pretending to select questioner
 	// ------------------------------------------------------------
 	function questionerChosen(args, kwargs, details){
-        logger.debug('TvLeaderboard finish "choosing" questioner');
+    logger.debug('TvLeaderboard finish "choosing" questioner');
 		Game.winningAnswer = null;
-        Game.numRated = 0;
+    Game.numRated = 0;
 		newRound();
 		session.publish('WAMPGameUpdate', [Game]);
 	}
 
 	session.register('questionerChosen', questionerChosen).then(
 		function (registration){
-            logger.info('questionerChosen procedure registered');
+      logger.info('questionerChosen procedure registered');
 		},
 		function (error){
-            logger.fatal('questionerChosen procedure could not be registered');
+      logger.fatal('questionerChosen procedure could not be registered');
 		}
 	);
 
@@ -450,7 +443,7 @@ connection.onopen = function (session){
 	// ------------------------------------------------------------
 
 	function revealQuestion(args, kwargs, details){
-        logger.debug('revealQuestion');
+    logger.debug('revealQuestion');
 		Game.revealQuestion = true;
 		Game.isNewQuestion = false;
 		session.publish('WAMPGameUpdate', [Game]);
@@ -458,7 +451,7 @@ connection.onopen = function (session){
 
 	session.register('revealQuestion', revealQuestion).then(
 		function (registration){
-            logger.info('revealQuestion procedure registered');
+      logger.info('revealQuestion procedure registered');
 		},
 		function (error){
 			logger.log('revealQuestion procedure could not be registered');
@@ -478,26 +471,21 @@ connection.onopen = function (session){
 		var confidenceFlag = args[3];
 		var blankInputArray = args[4];
 
-		console.log(playerName , ' has sent playerAnswersIndexArray: ', playerAnswersIndexArray);
-		console.log(playerName , ' has sent blankInputArray: ', blankInputArray);
-
-
 		var playerAnswersArray = [];
 
-        logger.debug(playerAnswersIndexArray);
+    logger.debug(playerAnswersIndexArray);
 
 		Game.players.forEach(function (player){
 			if (player.name === playerName) {
 
-
-
 				// Change status of player to reflect they have chosen an answer
-
 				if (!bonusFlag) {
 					player.hasAnswered = 'success';
 					player.confident = confidenceFlag;
 				}
 
+        // Add player's selected answer to answer list for questioner, before removing
+        // it from their answer pool
 				playerAnswersIndexArray.forEach(function (index){
 
 					logger.debug(player.name + ' has answered ', player.answers[index].text);
@@ -539,8 +527,8 @@ connection.onopen = function (session){
 
 		// Check if everyone answered, then shift first unratedAnswer into nextAnswerForRating
 		if (Game.numAnswered == (Game.numPlayers - 1 + Game.isSoleLoser)) {
-            logger.debug('SubmitAnswer: Everyone has now answered');
-            Game.nextAnswerForRating = Game.unratedAnswers.splice([Math.floor(Math.random() * Game.unratedAnswers.length - 1)], 1)[0];
+      logger.debug('SubmitAnswer: Everyone has now answered');
+      Game.nextAnswerForRating = Game.unratedAnswers.splice([Math.floor(Math.random() * Game.unratedAnswers.length - 1)], 1)[0];
 		}
 		session.publish('WAMPGameUpdate', [Game]);
 	}
@@ -548,10 +536,10 @@ connection.onopen = function (session){
 	// Register RPC
 	session.register('submitAnswer', submitAnswer).then(
 		function (registration){
-            logger.info('submitAnswer procedure registered');
+      logger.info('submitAnswer procedure registered');
 		},
 		function (error){
-            logger.fatal('submitAnswer procedure could not be registered');
+      logger.fatal('submitAnswer procedure could not be registered');
 		}
 	);
 
@@ -577,10 +565,10 @@ connection.onopen = function (session){
 
 	session.register('rateAnswer', rateAnswer).then(
 		function (registration){
-            logger.info('rateAnswer procedure registered');
+      logger.info('rateAnswer procedure registered');
 		},
 		function (error){
-            logger.fatal('rateAnswer procedure could not be registered');
+      logger.fatal('rateAnswer procedure could not be registered');
 		}
 	);
 
@@ -588,18 +576,18 @@ connection.onopen = function (session){
 	// Process questioner's answer rating
 	// ------------------------------------------------------------
 	function chooseWinner(args, kwargs, details){
-        logger.debug('WINNER:', args[0]);
+    logger.debug('WINNER:', args[0]);
 		Game.winningAnswer = args[0];
 
 		var winningPlayer = null;
 
 		Game.players.forEach(function (player){
 			player.hasAnswered = 'danger';
-            if (player.name === Game.winningAnswer.playerName) {
+      if (player.name === Game.winningAnswer.playerName) {
 				winningPlayer = player;
-	            winningPlayer.score++;
-	            winningPlayer.lastRound++;
-                logger.debug('Winning player is: ' , winningPlayer.name);
+        winningPlayer.score++;
+        winningPlayer.lastRound++;
+        logger.debug('Winning player is: ' , winningPlayer.name);
 			}
 		});
 
@@ -610,7 +598,7 @@ connection.onopen = function (session){
 					winningPlayer.lastRound++;
 					losingPlayer.score--;
 					losingPlayer.lastRound--;
-                    logger.debug(winningPlayer.name, ' is getting ' , losingPlayer.name, '\'s confidence point');
+          logger.debug(winningPlayer.name, ' is getting ' , losingPlayer.name, '\'s confidence point');
 					losingPlayer.confident = false;
 				}
 			});
@@ -624,10 +612,10 @@ connection.onopen = function (session){
 
 	session.register('chooseWinner', chooseWinner).then(
 		function (registration){
-            logger.info('chooseWinner procedure registered');
+      logger.info('chooseWinner procedure registered');
 		},
 		function (error){
-            logger.fatal('chooseWinner procedure could not be registered');
+      logger.fatal('chooseWinner procedure could not be registered');
 		}
 	);
 
@@ -641,10 +629,10 @@ connection.onopen = function (session){
 	}
 	session.register('quitGame', quitGame).then(
 		function (registration){
-            logger.info('quitGame procedure registered');
+      logger.info('quitGame procedure registered');
 		},
 		function (error){
-            logger.fatal('quitGame procedure could not be registered');
+      logger.fatal('quitGame procedure could not be registered');
 		}
 	);
 };
